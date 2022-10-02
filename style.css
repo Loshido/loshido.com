@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    line-height: inherit;
+    margin: 0;
+    font-family: sans-serif;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+.pop{
+    animation: pop 5s ease-in;
+    opacity: 0;
+    filter: grayscale(1);
+}
+
+@keyframes pop {
+    0%{
+        filter: grayscale(0);
+        opacity: 1;}
+    50%{
+        filter: grayscale(1);
+        opacity: 1;}
+    100%{opacity: 0;}
+}
+
+@media screen and (max-width: 700px) {
+    .bg svg#city{width: 150%;height: auto;}
+    .bg svg#lights{width: 150%;height: auto;}
+    main > h1::after{
+        bottom: -125%;
+        left: 0 !important;
+
+        width: 100%;
+        text-align: center;
+    }
+}
+
+main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-direction: column;
+    color: rgb(17, 24, 39);}
+main h1{
+    font-size: 3rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+    position: relative;
+
+    user-select: none;
+    cursor: pointer;}
+main h1::after{
+    position: absolute;
+    left: 105%;
+    width: 100%;
+    content: "";
+
+    opacity: 0;
+    transition: opacity 1.25s ease-in-out;
+}
+main h1:hover::after{    
+    opacity: 1;
+    content: " break in";
+    color: rgba(17, 24, 39, 0.4);
+    transition: opacity 1.25s ease-out;
+}
+::selection{
+    background-color: rgb(17, 24, 39);
+    color: white;}
+#city{
+    z-index: 5;
+    position: absolute;
+    right: 0;
+    bottom: 0;}
+#lights{
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    bottom: 0;}
+
+div.screen{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes spinning{
+    0%{transform: rotate(0);}
+    100%{transform: rotate(360deg);}
+}
+
+@keyframes gapping {
+    0%{gap: 0;}
+    50%{gap: 10px;}
+    100%{gap: 0;}
+}
+
+@keyframes opening {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
+div.screen > div.loader{
+    width: 160px;
+    height: 160px;
+
+    animation: opening 1s ease-in-out;
+
+    gap: 10px;
+
+    display: grid;
+    grid-template-columns: 75px 75px;
+    grid-template-rows: 75px 75px;
+
+    justify-content: center;
+    align-content: center;
+}
+
+div.screen > div.loader > div{
+    background-color: #06d6a0;
+    width: 75px;
+    height: 75px;
+    border-radius: 0;
+    transition: border-radius .75s ease-in;}
